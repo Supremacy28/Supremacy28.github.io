@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Aether Bot</title>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <style>
@@ -32,12 +32,52 @@
       z-index: -1;
     }
 
+    /* Fixed top-left container for profile pic + add bot button */
+    .top-left-bar {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background-color: rgba(35, 39, 42, 0.8);
+      padding: 8px 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+
+    .top-left-bar img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #23272a;
+    }
+
+    .top-left-bar a.button {
+      background-color: #7289da;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .top-left-bar a.button:hover {
+      background-color: #5b6eae;
+    }
+
     header {
       text-align: center;
       padding: 30px 20px 10px;
       font-size: 36px;
       font-weight: bold;
       color: #ffffff;
+      margin-top: 80px; /* space for fixed bar */
     }
 
     .main {
@@ -47,32 +87,58 @@
       align-items: center;
       padding: 30px 20px 0;
       gap: 30px;
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
     }
 
-    .wrapper {
+    /* Container holding all 4 pairs side by side */
+    .feature-wrapper {
       display: flex;
-      flex-direction: row;
-      gap: 40px;
       flex-wrap: wrap;
+      gap: 40px;
+      width: 100%;
       justify-content: center;
     }
 
-    .container {
+    /* Each pair container */
+    .feature-pair {
+      display: flex;
+      gap: 20px;
+      flex-shrink: 0;
+      width: 700px; /* feature + preview approx */
+      min-width: 320px;
+    }
+
+    .feature-container {
       background-color: #23272a;
       border-radius: 20px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
       padding: 30px;
-      width: 350px;
-      min-width: 300px;
+      width: 320px;
+      min-width: 280px;
+      flex-shrink: 0;
     }
 
-    .logo-img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-      object-fit: cover;
+    .preview-container {
       background-color: #23272a;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 20px;
+      width: 350px;
+      min-width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .preview-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     h1 {
@@ -88,6 +154,15 @@
       font-size: 16px;
       color: #dcdcdc;
     }
+#typewriter::after {
+  content: '|';
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 
     a.button {
       background-color: #7289da;
@@ -98,7 +173,8 @@
       border-radius: 10px;
       transition: background-color 0.3s ease;
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 1px;
+      white-space: nowrap;
     }
 
     a.button:hover {
@@ -121,51 +197,151 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
-    @media (max-width: 800px) {
-      .wrapper {
-        flex-direction: column;
-        align-items: center;
+    @media (max-width: 1500px) {
+      .feature-wrapper {
+        justify-content: flex-start;
       }
     }
+
+    @media (max-width: 750px) {
+      .feature-pair {
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+      }
+      .feature-container, .preview-container {
+        width: 100%;
+        min-width: unset;
+      }
+    }
+
+    @media (max-width: 450px) {
+      header {
+        font-size: 28px;
+      }
+    }
+
+    
   </style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const text = "AETHER BOT";
+    const typewriter = document.getElementById("typewriter");
+
+    let i = 0;
+    let typing = true;
+
+    function typeEffect() {
+      if (typing) {
+        if (i < text.length) {
+          typewriter.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeEffect, 150); // typing speed
+        } else {
+          typing = false;
+          setTimeout(typeEffect, 5000); // wait before deleting
+        }
+      } else {
+        if (i > 0) {
+          typewriter.textContent = text.substring(0, i - 1);
+          i--;
+          setTimeout(typeEffect, 80); // deleting speed
+        } else {
+          typing = true;
+          setTimeout(typeEffect, 1000); // wait before typing again
+        }
+      }
+    }
+
+    typeEffect(); // start animation
+  });
+</script>
+
 </head>
+
 <body>
   <!-- Particles Background -->
   <div id="particles-js"></div>
 
+  <!-- Top left fixed bar -->
+  <div class="top-left-bar">
+    <img src="aetherbot.png" alt="Aether Bot Logo" />
+    <a
+      class="button"
+      href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&scope=bot+applications.commands&permissions=8"
+      target="_blank"
+      >Add Bot to Server</a
+    >
+  </div>
+
   <!-- Header -->
-  <header>Aether Bot</header>
+<header><span id="typewriter"></span></header>
+
 
   <!-- Main Content -->
   <div class="main">
-    <!-- Two Side-by-Side Boxes -->
-    <div class="wrapper">
-      <!-- Invite Section -->
-      <div class="container">
-        <img src="aetherbot.png" alt="Bot Logo" class="logo-img">
-        <h1>Invite Our Discord Bot</h1>
-        <ul>
-          <li>Sofi Bot Uptime notifications</li>
-          <li>Easy setup, no coding required</li>
-        </ul>
-        <a class="button" href="https://discord.com/oauth2/authorize?client_id=1397678378600890430&scope=bot+applications.commands&permissions=534723951680" target="_blank">Add Bot to Server</a>
+    <div class="feature-wrapper">
+      <!-- Pair 1: Sofi Bot Commands + Preview -->
+      <div class="feature-pair">
+        <div class="feature-container">
+          <h1>Sofi Bot Status</h1>
+          <ul>
+            <li><strong>/setnotifychannel</strong> – Channel where Sofi Status will post</li>
+            <li><strong>/setpingrole [role]</strong> – Pings a specific role about the Sofi Status</li>
+          </ul>
+        </div>
+        <div class="preview-container">
+          <img src="sofistatuspreview.png" alt="Sofi Bot Commands Preview" />
+        </div>
       </div>
 
-      <!-- Commands Section -->
-      <div class="container">
-        <h1>Commands</h1>
-        <ul>
-          <li><strong>/setnotifychannel</strong> – Sets a channel to notify you</li>
-          <li><strong>/setpingrole [role]</strong> – Changes the role pinged by the bot with the updates</li>
-          <li><strong>/sofiguide</strong> – Provides you with all the correct links to Bump, Vote and Gudies</li>
-          <li><strong>/Help [role]</strong> – Aether general help command</li>
-        </ul>
+      <!-- Pair 2: Suggestion Commands + Preview -->
+      <div class="feature-pair">
+        <div class="feature-container">
+          <h1>Suggestion Commands</h1>
+          <ul>
+            <li><strong>/setsuggestionchannel</strong> – Sets current suggestion channel</li>
+            <li><strong>/suggest [Message]</strong> – Turns it into a nice Embed</li>
+          </ul>
+        </div>
+        <div class="preview-container">
+          <img src="SuggestionPreview.png" alt="Suggestion Commands Preview" />
+        </div>
+      </div>
+
+      <!-- Pair 3: Sofi Bot Commands + Preview (again) -->
+      <div class="feature-pair">
+        <div class="feature-container">
+          <h1>Sofi Bot commands</h1>
+          <ul>
+            <li><strong>/sofiguide</strong> – Guide for Sofi bot</li>
+          </ul>
+        </div>
+        <div class="preview-container">
+          <img src="soficommandpreview.png" alt="Coming soon!" />
+        </div>
+      </div>
+
+      <!-- Pair 4: Suggestion Commands + Preview (again) -->
+      <div class="feature-pair">
+        <div class="feature-container">
+          <h1>Bug Reporting</h1>
+          <ul>
+            <li><strong>/setbugchannel </strong> – Sets current Bug channel</li>
+            <li><strong>/setbugcommentrole [Role]</strong> – Allows Developer role to comment to Bug Reports </li>
+            <li><strong>/reportbug </strong> – Allows users to report bugs in nice embeds</li>
+            <li><strong>Update Button</strong> – Allows users to update/change their bug Reports</li>
+            <li><strong>Comment Button</strong> – Allows Set Bug Role to comment to users Bug Reports</li>
+          </ul>
+        </div>
+        <div class="preview-container">
+          <img src="ReportbugPreview.png" alt="Coming soon!" />
+        </div>
       </div>
     </div>
 
-    <!-- Banner Below the Boxes -->
     <div class="banner-container">
-      <img src="atherbanner.png" alt="Aether Bot Banner">
+      <img src="atherbanner.png" alt="Aether Bot Banner" />
     </div>
   </div>
 
