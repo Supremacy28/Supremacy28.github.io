@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Bot to Server</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #2c2f33;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #ffffff;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #23272a;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      padding: 30px;
+      width: 350px;
+      min-width: 350px;
+    }
+
+    .logo-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      object-fit: cover;
+      background-color: #23272a;
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    ul {
+      list-style-type: disc;
+      text-align: left;
+      padding-left: 20px;
+      margin: 20px 0;
+      font-size: 16px;
+      color: #dcdcdc;
+    }
+
+    a.button {
+      background-color: #7289da;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    a.button:hover {
+      background-color: #5b6eae;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Invite Section -->
+    <div class="container">
+      <img src="main.png" alt="Bot Logo" class="logo-img">
+      <h1>Invite Our Discord Bot</h1>
+      <ul>
+        <li>Sofi Bot Uptime notifications</li>
+
+        <li>Easy setup, no coding required</li>
+      </ul>
+      <a class="button" href="https://discord.com/oauth2/authorize?client_id=1397678378600890430&scope=bot+applications.commands&permissions=534723951680" target="_blank">Add Bot to Server</a>
+    </div>
+
+    <!-- Commands Section -->
+    <div class="container">
+      <h1>Commands</h1>
+      <ul>
+        <li><strong>/setnotifychannel</strong> – Sets a channel to notify you</li>
+        <li><strong>/setpingrole [role]</strong> – Changes the role pinged by the bot with the updates</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
