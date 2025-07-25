@@ -92,7 +92,7 @@
       margin: 0 auto;
     }
 
-    /* Container holding all 4 pairs side by side */
+    /* Container holding all 6 pairs side by side */
     .feature-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -154,15 +154,15 @@
       font-size: 16px;
       color: #dcdcdc;
     }
-#typewriter::after {
-  content: '|';
-  animation: blink 0.8s infinite;
-}
+    #typewriter::after {
+      content: '|';
+      animation: blink 0.8s infinite;
+    }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
 
     a.button {
       background-color: #7289da;
@@ -220,8 +220,6 @@
         font-size: 28px;
       }
     }
-
-    
   </style>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -275,27 +273,38 @@
   </div>
 
   <!-- Header -->
-<header><span id="typewriter"></span></header>
-
+  <header><span id="typewriter"></span></header>
 
   <!-- Main Content -->
   <div class="main">
     <div class="feature-wrapper">
-      <!-- Pair 1: Sofi Bot Commands + Preview -->
+
+      <!-- Top 2 Empty Containers -->
       <div class="feature-pair">
         <div class="feature-container">
-          <h1>Sofi Bot Status</h1>
+          <h1>Polling System</h1>
           <ul>
-            <li><strong>/setnotifychannel</strong> – Channel where Sofi Status will post</li>
-            <li><strong>/setpingrole [role]</strong> – Pings a specific role about the Sofi Status</li>
+            <li><strong>/poll [Question] [Options 1-10]</strong> – Polling feature that allows 10 Options!</li>
           </ul>
         </div>
         <div class="preview-container">
-          <img src="sofistatuspreview.png" alt="Sofi Bot Commands Preview" />
+          <img src="pollingpreview.png" alt="Polling System Preview" />
         </div>
       </div>
 
-      <!-- Pair 2: Suggestion Commands + Preview -->
+      <div class="feature-pair">
+        <div class="feature-container">
+          <h1>Reactive Roles System</h1>
+          <ul>
+            <li><strong>/reactionroles [Channel] [Roles]</strong> – Brand new modern reation roles system</li>
+          </ul>
+        </div>
+        <div class="preview-container">
+             <img src="reactionrolespreview.png" alt="ReactionRoles Preview" />
+        </div>
+      </div>
+
+      <!-- Middle 2: Suggestion and Bug Reporting -->
       <div class="feature-pair">
         <div class="feature-container">
           <h1>Suggestion Commands</h1>
@@ -309,20 +318,6 @@
         </div>
       </div>
 
-      <!-- Pair 3: Sofi Bot Commands + Preview (again) -->
-      <div class="feature-pair">
-        <div class="feature-container">
-          <h1>Sofi Bot commands</h1>
-          <ul>
-            <li><strong>/sofiguide</strong> – Guide for Sofi bot</li>
-          </ul>
-        </div>
-        <div class="preview-container">
-          <img src="soficommandpreview.png" alt="Coming soon!" />
-        </div>
-      </div>
-
-      <!-- Pair 4: Suggestion Commands + Preview (again) -->
       <div class="feature-pair">
         <div class="feature-container">
           <h1>Bug Reporting</h1>
@@ -338,6 +333,33 @@
           <img src="ReportbugPreview.png" alt="Coming soon!" />
         </div>
       </div>
+
+      <!-- Bottom 2: Sofi Bot -->
+      <div class="feature-pair">
+        <div class="feature-container">
+          <h1>Sofi Bot Status</h1>
+          <ul>
+            <li><strong>/setnotifychannel</strong> – Channel where Sofi Status will post</li>
+            <li><strong>/setpingrole [role]</strong> – Pings a specific role about the Sofi Status</li>
+          </ul>
+        </div>
+        <div class="preview-container">
+          <img src="sofistatuspreview.png" alt="Sofi Bot Commands Preview" />
+        </div>
+      </div>
+
+      <div class="feature-pair">
+        <div class="feature-container">
+          <h1>Sofi Bot commands</h1>
+          <ul>
+            <li><strong>/sofiguide</strong> – Guide for Sofi bot</li>
+          </ul>
+        </div>
+        <div class="preview-container">
+          <img src="soficommandpreview.png" alt="Coming soon!" />
+        </div>
+      </div>
+
     </div>
 
     <div class="banner-container">
